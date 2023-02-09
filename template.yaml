@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: testing testing 123
+Globals:
+  Function:
+    Layers:
+      - arn:aws:lambda:eu-west-1:580247275435:layer:LambdaInsightsExtension-Arm64:2
+Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Architectures:
+        - arm64
+      Description: hello world function to test xray for instrumentation
+      Handler: HelloWorldWriter::HandleRequest
+      CodeUri: .
+      Runtime: java11
+      Policies:
+        - CloudWatchLambdaInsightsExecutionRolePolicy
